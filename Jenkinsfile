@@ -7,6 +7,12 @@ pipeline {
                 git 'https://github.com/your-repo/flask-app.git'
             }
         }
+
+        stage('Run Unit Tests') {
+            steps {
+                sh 'python3 -m unittest discover -s tests'
+            }
+        }
         
         stage('Build Docker Image') {
             steps {
@@ -15,7 +21,7 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Run Docker Container') {
             steps {
                 script {
